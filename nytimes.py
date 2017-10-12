@@ -180,7 +180,7 @@ def load_articles_from_headlines_only(section_soup):
     stories = section_soup.find_all('li')
     for story_soup in stories:
         story_dict = {
-            'title': story_soup.find('h6').text.strip(),
+            'title': story_soup.find('a').text.strip(),
             'url': story_soup.find('a').get('href')
         }
 
