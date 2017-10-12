@@ -29,7 +29,7 @@ except:
 # -----------------------------------------------------------------------------
 # Cache functions
 # -----------------------------------------------------------------------------
-def has_cache_expired(timestamp_str):
+def has_cache_expired(timestamp_str, expire_in_days):
     """Check if cache timestamp is over expire_in_days old"""
     # gives current datetime
     now = datetime.now()
@@ -43,7 +43,7 @@ def has_cache_expired(timestamp_str):
 
     # now that we have days as integers, we can just use comparison
     # and decide if cache has expired or not
-    if delta_in_days > expire_in_days:
+    if delta_in_days <= expire_in_days:
         return False
     else:
         return True
@@ -60,6 +60,7 @@ def get_from_cache(url):
             html = None
         else:
             html = CACHE_DICTION[url]['html']
+
     else:
         html = None
 
